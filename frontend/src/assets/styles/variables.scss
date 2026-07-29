@@ -1,0 +1,355 @@
+@charset "UTF-8";
+@use 'sass:color'; // 添加颜色模块导入
+
+// --- 全局颜色变量 --- //
+$primary-color: #3f51b5; // 深蓝色，作为主品牌色
+$primary-light-color: #7986cb;
+$primary-dark-color: #303f9f;
+
+$accent-color: #00bcd4; // 青色，作为强调色，用于交互元素或重要信息
+$accent-light-color: #4dd0e1;
+$accent-dark-color: #0097a7;
+
+$success-color: #4caf50; // 成功色
+$warning-color: #ff9800; // 警告色
+$danger-color: #f44336; // 危险色
+$info-color: #9e9e9e; // 信息色
+
+$text-color-primary: #333333; // 主要文本色
+$text-color-regular: #606266; // 常规文本色
+$text-color-secondary: #909399; // 次要文本色
+$text-color-placeholder: #c0c4cc; // 占位符文本色
+
+$border-color-base: #dcdfe6; // 基础边框色
+$border-color-light: #e4e7ed;
+$border-color-lighter: #ebeef5;
+$border-color-extra-light: #f2f6fc;
+
+$background-color-base: #f5f7fa; // 页面背景色（兼容旧引用）
+$background-color-card: #ffffff; // 卡片背景色（兼容旧引用）
+
+// --- 主题 CSS 变量（支持动态切换，背景与内容联动） --- //
+:root {
+  --sims-page-bg: #e4e9f2; /* 页面背景，比卡片略深以形成层次 */
+  --sims-card-bg: #ffffff;
+  --sims-card-border: #e4e7ed;
+  --sims-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --sims-card-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --sims-text-primary: #333333;
+  --sims-text-regular: #606266;
+  --sims-text-secondary: #909399;
+  --sims-header-text: #333333;
+}
+
+/* 深色主题：切换 data-theme="dark" 时，页面与内容同步调整 */
+[data-theme='dark'] {
+  --sims-page-bg: #1a1d28;
+  --sims-card-bg: #252836;
+  --sims-card-border: #3d4252;
+  --sims-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --sims-card-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --sims-text-primary: #e6e8ec;
+  --sims-text-regular: #c0c4cc;
+  --sims-text-secondary: #909399;
+  --sims-header-text: #e6e8ec;
+}
+
+/* 深色主题下 Element Plus 组件适配 */
+[data-theme='dark'] .el-table,
+[data-theme='dark'] .el-table__body-wrapper,
+[data-theme='dark'] .el-table th.el-table__cell {
+  background-color: var(--sims-card-bg) !important;
+  color: var(--sims-text-primary) !important;
+}
+
+[data-theme='dark'] .el-table tr,
+[data-theme='dark'] .el-table td.el-table__cell {
+  background-color: var(--sims-card-bg) !important;
+  color: var(--sims-text-primary) !important;
+}
+
+[data-theme='dark'] .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+[data-theme='dark'] .el-input__wrapper {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 0 0 1px var(--sims-card-border) inset !important;
+}
+
+[data-theme='dark'] .el-input__wrapper .el-input__inner,
+[data-theme='dark'] .el-select .el-select__wrapper .el-input__inner {
+  color: var(--sims-text-primary) !important;
+}
+
+[data-theme='dark'] .el-form-item__label {
+  color: var(--sims-text-regular) !important;
+}
+
+/* 登录页对话框：始终使用浅色风格，不受暗色模式影响 */
+[data-theme='dark'] .sims-dialog-light.el-dialog {
+  background-color: #ffffff !important;
+  border-color: #e4e7ed !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-dialog__header {
+  background-color: #f5f7fa !important;
+  border-color: #e4e7ed !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-dialog__title {
+  color: #303133 !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-dialog__body {
+  color: #606266 !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-dialog__footer {
+  border-color: #e4e7ed !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-input__wrapper {
+  background-color: #f5f7fa !important;
+  box-shadow: 0 0 0 1px #dcdfe6 inset !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-input__wrapper .el-input__inner,
+[data-theme='dark'] .sims-dialog-light .el-select .el-select__wrapper .el-input__inner {
+  color: #303133 !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-form-item__label {
+  color: #606266 !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-descriptions__label {
+  color: #909399 !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .el-descriptions__content {
+  color: #303133 !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .notice-content p {
+  color: #606266 !important;
+}
+
+[data-theme='dark'] .sims-dialog-light .notice-content strong {
+  color: #303133 !important;
+}
+
+// --- 全局字体变量 --- //
+$font-family-base:
+  'HarmonyOS Sans SC', 'Noto Sans SC', 'PingFang SC', 'Helvetica Neue', Helvetica,
+  'Microsoft YaHei', Arial, sans-serif;
+$font-size-base: 14px;
+$font-size-large: 16px;
+$font-size-medium: 15px;
+$font-size-small: 13px;
+$font-size-extra-small: 12px;
+
+// --- 全局间距变量 --- //
+$spacing-extra-small: 4px;
+$spacing-small: 8px;
+$spacing-medium: 16px;
+$spacing-large: 24px;
+$spacing-extra-large: 32px;
+
+// --- CSS Reset / Base Styles --- //
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: var(--sims-text-regular);
+  background-color: var(--sims-page-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+// 基础链接样式
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary-dark-color;
+    text-decoration: underline;
+  }
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sims-page-bg);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0; /* 浅灰色 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0; /* 更深的灰色 */
+}
+
+/* 通用卡片：使用主题变量，与页面背景形成层次，随主题动态调整 */
+.el-card {
+  background-color: var(--sims-card-bg) !important;
+  border: 1px solid var(--sims-card-border);
+  box-shadow: var(--sims-card-shadow) !important;
+  border-radius: 8px;
+}
+.el-card:hover {
+  box-shadow: var(--sims-card-shadow-hover) !important;
+}
+
+/* 统一对话框样式：与项目风格一致，支持深浅色主题 */
+.el-dialog {
+  background-color: var(--sims-card-bg) !important;
+  border: 1px solid var(--sims-card-border);
+  border-radius: 12px !important;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15) !important;
+}
+
+.el-dialog__header {
+  padding: 20px 24px 16px !important;
+  margin-right: 0 !important;
+  border-bottom: 1px solid var(--sims-card-border);
+  background-color: var(--sims-page-bg);
+  border-radius: 12px 12px 0 0;
+}
+
+.el-dialog__title {
+  color: var(--sims-text-primary) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+/* 隐藏关闭叉，改用点击遮罩关闭，视觉更简洁 */
+.el-dialog__headerbtn {
+  display: none !important;
+}
+
+.el-dialog__body {
+  padding: 24px !important;
+  color: var(--sims-text-regular);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* 对话框表单：左右双列布局，减少滚动（排除 register-form 等自定义布局） */
+.el-dialog__body .el-form:not(.el-form--inline):not(.register-form) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+.el-dialog__body .el-form:not(.el-form--inline):not(.register-form) .el-form-item {
+  margin-bottom: 0;
+}
+
+/* 文本域、开关等占满整行 */
+.el-dialog__body .el-form .el-form-item:has(.el-textarea),
+.el-dialog__body .el-form .el-form-item:has(textarea),
+.el-dialog__body .el-form .el-form-item:has(.el-switch) {
+  grid-column: 1 / -1;
+}
+
+.el-dialog__footer {
+  padding: 16px 24px 24px !important;
+  border-top: 1px solid var(--sims-card-border);
+}
+
+.el-dialog__footer .el-button {
+  min-width: 80px;
+}
+
+/* 对话框内表单标签与描述列表 */
+.el-dialog .el-form-item__label {
+  color: var(--sims-text-regular);
+}
+
+.el-dialog .el-descriptions__label {
+  color: var(--sims-text-secondary);
+}
+
+.el-dialog .el-descriptions__content {
+  color: var(--sims-text-primary);
+}
+
+/* 深色模式下对话框阴影增强 */
+[data-theme='dark'] .el-dialog {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5) !important;
+}
+
+// 覆盖 Element Plus 按钮默认 hover 颜色，使其与主色调更协调
+.el-button--primary {
+  &:hover,
+  &:focus {
+    background-color: $primary-light-color !important;
+    border-color: $primary-light-color !important;
+  }
+
+  &.is-plain {
+    color: $primary-color !important;
+    // 已修复：使用 color.adjust() 替代 lighten()
+    background-color: color.adjust($primary-color, $lightness: 45%) !important;
+    border-color: color.adjust($primary-color, $lightness: 35%) !important;
+
+    &:hover,
+    &:focus {
+      // 已修复：使用 color.adjust() 替代 lighten()
+      background-color: color.adjust($primary-color, $lightness: 40%) !important;
+      border-color: color.adjust($primary-color, $lightness: 30%) !important;
+    }
+  }
+}
+
+// 覆盖 Element Plus Tag 样式，使其更具一致性
+.el-tag {
+  &.el-tag--success {
+    // 已修复：使用 color.adjust() 替代 lighten()
+    background-color: color.adjust($success-color, $lightness: 40%);
+    border-color: color.adjust($success-color, $lightness: 30%);
+    color: $success-color;
+  }
+  &.el-tag--warning {
+    // 已修复：使用 color.adjust() 替代 lighten()
+    background-color: color.adjust($warning-color, $lightness: 35%);
+    border-color: color.adjust($warning-color, $lightness: 25%);
+    color: $warning-color;
+  }
+  &.el-tag--danger {
+    // 已修复：使用 color.adjust() 替代 lighten()
+    background-color: color.adjust($danger-color, $lightness: 30%);
+    border-color: color.adjust($danger-color, $lightness: 20%);
+    color: $danger-color;
+  }
+  &.el-tag--info {
+    // 已修复：使用 color.adjust() 替代 lighten()
+    background-color: color.adjust($info-color, $lightness: 30%);
+    border-color: color.adjust($info-color, $lightness: 20%);
+    color: $info-color;
+  }
+  &.el-tag--primary {
+    // 已修复：使用 color.adjust() 替代 lighten()
+    background-color: color.adjust($primary-color, $lightness: 35%);
+    border-color: color.adjust($primary-color, $lightness: 25%);
+    color: $primary-color;
+  }
+}

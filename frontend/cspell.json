@@ -1,0 +1,36 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "background",
+    "background-color",
+    "opacity",
+    "translateY",
+    "box-shadow",
+    "border-radius",
+    "linear-gradient",
+    "flex-direction",
+    "font-family",
+    "font-size",
+    "font-weight",
+    "el-icon",
+    "el-card",
+    "el-row",
+    "el-col",
+    "el-form",
+    "el-input",
+    "el-select",
+    "el-button",
+    "el-table",
+    "el-dialog",
+    "el-pagination",
+    "el-menu",
+    "el-aside",
+    "scoped"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "dist",
+    "*.min.js"
+  ]
+}

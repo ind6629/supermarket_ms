@@ -1,0 +1,4 @@
+order_number,customer_name,customer_phone,product_code,quantity,unit_price,sales_channel,payment_method,remark
+SALEIMPORT001,赵琳,13700000001,P001,2,3.50,store,wechat,晚高峰导入样例
+SALEIMPORT001,赵琳,13700000001,P003,1,5.00,store,wechat,同一订单第二个商品
+SALEIMPORT002,孙涛,13700000002,P002,3,4.20,store,cash,收银台 2 号机
